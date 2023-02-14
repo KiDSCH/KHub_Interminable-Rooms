@@ -27,18 +27,23 @@ local Speed = Instance.new("Folder")
 local Speedbutton = Instance.new("TextButton")
 local UICorner_6 = Instance.new("UICorner")
 local Speed_2 = Instance.new("TextLabel")
+local Fly = Instance.new("Folder")
+local Flybutton = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local Fly_2 = Instance.new("TextLabel")
 local Event_2 = Instance.new("Frame")
 local Text_2 = Instance.new("TextLabel")
 local Error = Instance.new("Frame")
 local ErrorText = Instance.new("TextLabel")
-local UICorner_7 = Instance.new("UICorner")
 local UICorner_8 = Instance.new("UICorner")
+local UICorner_9 = Instance.new("UICorner")
 
 -- Properties
 
 KHUB.Name = "KHUB"
 KHUB.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 KHUB.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+KHUB.ResetOnSpawn = false
 
 KHUBVersion.Name = "KHUBVersion"
 KHUBVersion.Parent = KHUB
@@ -240,6 +245,34 @@ Speed_2.TextScaled = true
 Speed_2.TextSize = 14
 Speed_2.TextWrapped = true
 
+Fly.Name = "Fly"
+Fly.Parent = Cheats
+
+Flybutton.Name = "Flybutton"
+Flybutton.Parent = Fly
+Flybutton.BackgroundColor3 = Color3.new(0.596078, 0, 0)
+Flybutton.Position = UDim2.new(0.186702535, 0, 0.623111427, 0)
+Flybutton.Size = UDim2.new(0.128716558, 0, 0.10474328, 0)
+Flybutton.Font = Enum.Font.Unknown
+Flybutton.Text = "off"
+Flybutton.TextColor3 = Color3.new(0, 0, 0)
+Flybutton.TextSize = 14
+
+UICorner_7.Parent = Flybutton
+
+Fly_2.Name = "Fly"
+Fly_2.Parent = Fly
+Fly_2.BackgroundColor3 = Color3.new(1, 1, 1)
+Fly_2.BackgroundTransparency = 1
+Fly_2.Position = UDim2.new(0.0200296491, 0, 0.617025256, 0)
+Fly_2.Size = UDim2.new(0.166672885, 0, 0.101343125, 0)
+Fly_2.Font = Enum.Font.SourceSansBold
+Fly_2.Text = "Fly"
+Fly_2.TextColor3 = Color3.new(1, 1, 1)
+Fly_2.TextScaled = true
+Fly_2.TextSize = 14
+Fly_2.TextWrapped = true
+
 Event_2.Name = "Event"
 Event_2.Parent = Hub
 Event_2.BackgroundColor3 = Color3.new(0.301961, 0, 0)
@@ -253,7 +286,7 @@ Text_2.BackgroundColor3 = Color3.new(1, 1, 1)
 Text_2.BackgroundTransparency = 1
 Text_2.Size = UDim2.new(0, 273, 0, 76)
 Text_2.Font = Enum.Font.SourceSansBold
-Text_2.Text = "is Coming!"
+Text_2.Text = " spawned!"
 Text_2.TextColor3 = Color3.new(0.721569, 0, 0)
 Text_2.TextScaled = true
 Text_2.TextSize = 14
@@ -277,13 +310,13 @@ ErrorText.TextScaled = true
 ErrorText.TextSize = 14
 ErrorText.TextWrapped = true
 
-UICorner_7.Parent = ErrorText
+UICorner_8.Parent = ErrorText
 
-UICorner_8.Parent = Error
+UICorner_9.Parent = Error
 
 -- Scripts
 
-local function FDULQO_fake_script() -- KHUB.Main 
+local function KAZY_fake_script() -- KHUB.Main 
 	local script = Instance.new('LocalScript', KHUB)
 
 	--Services (asas_)
@@ -315,7 +348,7 @@ local function FDULQO_fake_script() -- KHUB.Main
 	--Variables
 	local ESP = false
 	local EventNotificator = false
-	local asas = false
+	local Fly = false
 	local asas2 = false
 	local speed = 1
 	
@@ -323,6 +356,7 @@ local function FDULQO_fake_script() -- KHUB.Main
 	local ESPbutton = Hub.Cheats.ESP.ESPbutton
 	local EventButton = Hub.Cheats.EventN.Eventbutton
 	local SpeedButton = Hub.Cheats.Speed.Speedbutton
+	local FlyButton = Hub.Cheats.Fly.Flybutton
 	
 	--Welcome
 	Hub.Visible = false
@@ -342,7 +376,7 @@ local function FDULQO_fake_script() -- KHUB.Main
 	
 	function WarnEntity(entity)
 		WarnEntityF.Visible = true
-		WarnEntityF.Text.Text = entity.." is Coming!"
+		WarnEntityF.Text.Text = entity.." spawned!"
 		wait(2)
 		WarnEntityF.Visible = false
 		WarnEntityF.Transparency = 0
@@ -354,7 +388,7 @@ local function FDULQO_fake_script() -- KHUB.Main
 		box.Name = "ESP"
 		box.Adornee = a
 		box.Transparency = 0.55
-		box.ZIndex = -1
+		box.ZIndex = 0
 		box.AlwaysOnTop = true
 		box.Size = Vector3.new(a.HumanoidRootPart.Size.X,a.HumanoidRootPart.Size.Y,a.HumanoidRootPart.Size.Z)
 		box.Color3 = Color3.new(0.129412, 0.956863, 1)
@@ -379,6 +413,17 @@ local function FDULQO_fake_script() -- KHUB.Main
 		else
 			EventButton.BackgroundColor3 = Color3.new(0.596078, 0, 0)
 			EventButton.Text = "off"
+		end
+	end)
+	
+	FlyButton.MouseButton1Click:Connect(function()
+		Fly = not Fly
+		if Fly then
+			FlyButton.BackgroundColor3 = Color3.new(0.0196078, 0.65098, 0.0588235)
+			FlyButton.Text = "on"
+		else
+			FlyButton.BackgroundColor3 = Color3.new(0.596078, 0, 0)
+			FlyButton.Text = "off"
 		end
 	end)
 	
@@ -410,7 +455,10 @@ local function FDULQO_fake_script() -- KHUB.Main
 	end)
 	
 	EntitiesFolder.ChildAdded:Connect(function(entity)
-		WarnEntity(entity.Name)
+		if EventNotificator == true then
+			WarnEntity(entity.Name)
+		end
+		entity:SetAttribute("Esp",false)
 	end)
 	
 	SettingsF.Settingsbutton.MouseButton1Click:Connect(function()
@@ -420,7 +468,7 @@ local function FDULQO_fake_script() -- KHUB.Main
 	while wait() do
 		if ESP == true then --ESP MAKER/CHECKER
 			for _,v in pairs(EntitiesFolder:GetChildren()) do
-				v:SetAttribute("Esp",false)
+				v:SetAttribute("Esp",true)
 				if v:GetAttribute("Esp") == false then
 					esp(v)
 					v:SetAttribute("Esp",true)
@@ -428,12 +476,99 @@ local function FDULQO_fake_script() -- KHUB.Main
 			end
 		elseif ESP == false then
 			for _,v in pairs(EntitiesFolder:GetChildren()) do
-				v.ESP:Destroy()
-				v:SetAttribute("Esp",false)
+				if v:FindFirstChild("ESP") then
+					v.ESP:Destroy()
+					v:SetAttribute("Esp",false)
+				end
 			end
 		end
-	
 		
 	end
 end
-coroutine.wrap(FDULQO_fake_script)()
+coroutine.wrap(KAZY_fake_script)()
+local function ZABDFZ_fake_script() -- KHUB.Fly 
+	local script = Instance.new('LocalScript', KHUB)
+
+	lplayer = game:GetService("Players").LocalPlayer
+	local Mouse = lplayer:GetMouse()
+	flying = false
+	local a = 1
+	while wait(0.1) do
+		if script.Parent.Hub.Cheats.Fly.Flybutton.Text == "on" then
+				repeat wait() until lplayer and lplayer.Character and lplayer.Character:FindFirstChild('HumanoidRootPart') and lplayer.Character:FindFirstChild('Humanoid')
+				repeat wait() until Mouse
+				
+				speedfly = 2 --FLY SPEED HERE
+				
+				local T = lplayer.Character.HumanoidRootPart
+				local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+				local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+				local SPEED = speedget
+				
+				local function fly()
+					flying = true
+					local BG = Instance.new('BodyGyro', T)
+					local BV = Instance.new('BodyVelocity', T)
+					BG.P = 9e4
+					BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+					BG.cframe = T.CFrame
+					BV.velocity = Vector3.new(0, 0.1, 0)
+					BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+					spawn(function()
+						repeat wait()
+							lplayer.Character.Humanoid.PlatformStand = true
+							if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+								SPEED = 50
+							elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+								SPEED = 0
+							end
+							if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+								BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+								lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+							elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+								BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+							else
+								BV.velocity = Vector3.new(0, 0.1, 0)
+							end
+							BG.cframe = workspace.CurrentCamera.CoordinateFrame
+						until not flying
+						CONTROL = {F = 0, B = 0, L = 0, R = 0}
+						lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+						SPEED = 0
+						BG:destroy()
+						BV:destroy()
+						lplayer.Character.Humanoid.PlatformStand = false
+					end)
+				end
+				Mouse.KeyDown:connect(function(KEY)
+					if KEY:lower() == 'w' then
+						CONTROL.F = speedfly
+					elseif KEY:lower() == 's' then
+						CONTROL.B = -speedfly
+					elseif KEY:lower() == 'a' then
+						CONTROL.L = -speedfly
+					elseif KEY:lower() == 'd' then
+						CONTROL.R = speedfly
+					end
+				end)
+				Mouse.KeyUp:connect(function(KEY)
+					if KEY:lower() == 'w' then
+						CONTROL.F = 0
+					elseif KEY:lower() == 's' then
+						CONTROL.B = 0
+					elseif KEY:lower() == 'a' then
+						CONTROL.L = 0
+					elseif KEY:lower() == 'd' then
+						CONTROL.R = 0
+					end
+				end)
+				fly()
+			else 
+				flying = false
+				lplayer.Character.Humanoid.PlatformStand = false
+			end end
+		
+	
+	wait()
+end
+coroutine.wrap(ZABDFZ_fake_script)()
