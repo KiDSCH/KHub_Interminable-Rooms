@@ -388,9 +388,9 @@ local function KAZY_fake_script() -- KHUB.Main
 		box.Name = "ESP"
 		box.Adornee = a
 		box.Transparency = 0.55
-		box.ZIndex = 0
+		box.ZIndex = 4
 		box.AlwaysOnTop = true
-		box.Size = Vector3.new(a.HumanoidRootPart.Size.X,a.HumanoidRootPart.Size.Y,a.HumanoidRootPart.Size.Z)
+		box.Size = Vector3.new(5,5,5)
 		box.Color3 = Color3.new(0.129412, 0.956863, 1)
 	end
 	
@@ -458,7 +458,11 @@ local function KAZY_fake_script() -- KHUB.Main
 		if EventNotificator == true then
 			WarnEntity(entity.Name)
 		end
-		entity:SetAttribute("Esp",false)
+		if ESP == true then
+			entity.Torso:SetAttribute("Esp",false)
+		else
+			entity.Torso:SetAttribute("Esp",false)
+		end
 	end)
 	
 	SettingsF.Settingsbutton.MouseButton1Click:Connect(function()
@@ -470,15 +474,15 @@ local function KAZY_fake_script() -- KHUB.Main
 			for _,v in pairs(EntitiesFolder:GetChildren()) do
 				v:SetAttribute("Esp",true)
 				if v:GetAttribute("Esp") == false then
-					esp(v)
-					v:SetAttribute("Esp",true)
+					esp(v.Torso)
+					v.Torso:SetAttribute("Esp",true)
 				end
 			end
 		elseif ESP == false then
 			for _,v in pairs(EntitiesFolder:GetChildren()) do
-				if v:FindFirstChild("ESP") then
-					v.ESP:Destroy()
-					v:SetAttribute("Esp",false)
+				if v.Torso:FindFirstChild("ESP") then
+					v.Torso.ESP:Destroy()
+					v.Torso:SetAttribute("Esp",false)
 				end
 			end
 		end
